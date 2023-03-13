@@ -1,20 +1,39 @@
-import React from "react";
-import CreateBlog from "./create";
-import BlogslistView from "./blogslist";
-import BlogView from "./show";
-import BlogEdit from "./edit";
+import { useState } from "react";
+import { Container, Navbar, Row, Col } from "react-bootstrap";
+import AddBook from "./components/AddBook";
+import BooksList from "./components/BooksList";
+import "./App.css";
 
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 function App() {
+  const [bookId, setBookId] = useState("");
+
+  const getBookIdHandler = (id) => {
+    console.log("The ID of document to be edited: ", id);
+    setBookId(id);
+  };
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<BlogslistView/>}/>
-        <Route path="/Create/" element={<CreateBlog/>}/>
-        <Route path="/show/:id" element={<BlogView/>}/>
-        <Route path="/EditBlog/:id" element={<BlogEdit/>}/>
-      </Routes>
-    </Router>
+    <>
+      <Navbar bg="dark" variant="dark" className="header">
+        <Container>
+          <Navbar.Brand href="#home">Library - Firebase CRUD</Navbar.Brand>
+        </Container>
+      </Navbar>
+
+      <Container style={{ width: "400px" }}>
+        <Row>
+          <Col>
+            <AddBook id={bookId} setBookId={setBookId} />
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+          <Col>
+            <BooksList getBookId={getBookIdHandler} />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
