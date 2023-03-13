@@ -1,5 +1,6 @@
 import './App.css';
 import Form from './components/common/Form'
+import { BrowserRouter as Router } from 'react-router-dom'
 // CRUD Operations
 // import { useState } from "react";
 // import { Container, Navbar, Row, Col } from "react-bootstrap";
@@ -46,9 +47,11 @@ function App() {
     // </>
   // END CRUD Operations
 
-    <div className="App">
-      <Form />
-    </div>
+    <Router>
+      <div className="App">
+        <Form />
+      </div>
+    </Router>
   );
 }
 
